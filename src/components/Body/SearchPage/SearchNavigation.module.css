@@ -1,0 +1,27 @@
+.tabs {
+  height: 48px;
+  position: sticky;
+  display: flex;
+  align-items: center;
+  top: 64px;
+  background-color: #121212;
+  z-index: 1;
+}
+
+.tabs a {
+  font-size: 14px;
+  background-color: #232323;
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 32px;
+  margin-right: 12px;
+  transition: background-color 0.2s ease 0s, color 0.2s ease 0s;
+  font-weight: 400;
+  cursor: default;
+}
+
+a.active {
+  background-color: #f6f6f6;
+  color: black;
+}

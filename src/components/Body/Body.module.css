@@ -1,0 +1,30 @@
+.body {
+  display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  flex-direction: column;
+  grid-area: body;
+  position: relative;
+  max-height: calc(100vh - 90px);
+  min-height: calc(100vh - 90px);
+  overflow: auto;
+  background-color: #121212;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  color: white;
+}
+
+.body::-webkit-scrollbar {
+  width: 16px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}

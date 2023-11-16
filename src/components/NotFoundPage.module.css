@@ -1,0 +1,43 @@
+.wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: #121212;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-size: 40px;
+  margin-top: 40px;
+}
+
+.caption {
+  margin: 16px 0 40px 0;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.button {
+  padding: 12px 32px;
+  font-size: 16px;
+  background-color: white;
+  color: black;
+  border-radius: 40px;
+  text-decoration: none;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}

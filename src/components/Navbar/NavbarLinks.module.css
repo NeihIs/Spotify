@@ -1,0 +1,131 @@
+.links {
+  display: flex;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #a7a7a7;
+  align-items: center;
+  cursor: default;
+}
+
+.links > div:nth-child(1),
+.links > div:nth-child(2),
+.links > div:nth-child(3) {
+  padding: 0 8px;
+  letter-spacing: 2px;
+}
+
+.links > div:hover {
+  color: white;
+  transform: scale(1.04);
+  cursor: default;
+}
+
+.divider {
+  border-left: 1px solid white;
+  height: 25px;
+  margin: 0 40px 0 20px;
+}
+
+.links > div:last-child {
+  background-color: white;
+  color: black;
+  padding: 15px 30px;
+  margin-left: 30px;
+  border-radius: 25px;
+}
+
+.links > div:last-child:hover {
+  transform: scale(1.075);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+
+.buttons > div:first-child {
+  padding: 7px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: transparent;
+  border-radius: 500px;
+  position: relative;
+  transition-property: background-color, border-color, color, box-shadow, filter,
+    transform;
+  transform: translate3d(0px, 0px, 0px);
+  border: 1px solid #878787;
+  margin-right: 30px;
+}
+
+.buttons > div:first-child:hover {
+  transform: scale(1.05);
+  background-color: black;
+  border: 2px solid white;
+}
+
+.buttons > div:nth-child(2) {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px 8px 2px 2px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 500px;
+  cursor: pointer;
+}
+
+.buttons > div:nth-child(2) > img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.buttons > div:nth-child(2):hover {
+  background: #282828;
+}
+
+.buttons > div:nth-child(2) > span {
+  padding: 0 10px;
+}
+
+.buttons > div:nth-child(2):focus > .dropdown {
+  display: block;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  bottom: -300px;
+  right: 0;
+  background: #282828;
+  padding: 4px;
+  font-size: 14px;
+  border-radius: 4px;
+  font-weight: 400;
+}
+
+/* Dropdown List Item Wrapper */
+.dropdown > div {
+  padding: 12px 8px 12px 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: default;
+}
+
+.dropdown > div:hover {
+  background-color: hsla(0, 0%, 100%, 0.1);
+}
+
+.dropdown > div:last-child {
+  border-top: 1px solid #3e3e3e;
+}
+
+/* Icon Wraper */
+.dropdown > div > div {
+  width: 16px;
+  height: 16px;
+}

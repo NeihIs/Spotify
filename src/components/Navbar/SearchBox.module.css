@@ -1,0 +1,33 @@
+.box {
+  background-color: white;
+  border-radius: 500px;
+  position: relative;
+  width: 365px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.box > span:first-child {
+  margin: 4px 10px 0px 11px;
+}
+
+.box > div:last-child {
+  margin: 5px 12px 1px 10px;
+}
+
+.input {
+  height: 39px;
+  border-radius: 30px;
+  outline: none;
+  border: none;
+  width: 100%;
+  text-overflow: ellipsis;
+  border: 0;
+  font-weight: 300;
+  font-size: 0.875rem;
+}
+
+.input:focus {
+  outline: none !important;
+}

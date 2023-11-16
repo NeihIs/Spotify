@@ -1,0 +1,32 @@
+.wrapper {
+  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.31s ease-in-out;
+}
+
+.icon {
+  background-color: #1ed760;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 48px;
+}
+
+.icon:hover {
+  transform: scale(1.05);
+}
+
+.icon:active {
+  transform: scale(0.99);
+}
+
+.text {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}

@@ -1,0 +1,78 @@
+.wrapper {
+  aspect-ratio: 1;
+  padding: 16px;
+  background-color: #181818;
+  position: relative;
+  border-radius: clamp(4px, (var(--column-width, 0px) - 32px) * 0.025, 8px);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.wrapper:hover {
+  background-color: #282828;
+}
+
+.wrapper img {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: clamp(4px, (var(--column-width, 0px) - 32px) * 0.025, 8px);
+  margin-bottom: 16px;
+}
+
+.rounded {
+  border-radius: 100% !important;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-bottom: 4px;
+  color: white;
+}
+
+.subtitle {
+  color: #6a6a6a;
+  font-weight: 400;
+  font-size: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.button-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1ed760;
+  border-radius: 48px;
+  position: absolute;
+  right: 24px;
+  bottom: 100px;
+  transform: translateY(8px);
+  transition: all 0.3s ease;
+  opacity: 0;
+  box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
+}
+
+.button-wrapper:hover {
+  transform: scale(1.1) !important;
+}
+
+.button-wrapper:active {
+  transform: scale(0.95) !important;
+}
+
+.wrapper:hover .button-wrapper {
+  opacity: 1;
+  transform: translateY(0px);
+  cursor: default;
+}

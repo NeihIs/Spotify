@@ -1,0 +1,32 @@
+.create-playlist-icon {
+  background-color: #fff;
+  border-radius: 2px;
+  color: #000;
+  display: flex;
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.liked-songs-icon {
+  background: linear-gradient(135deg, #450af5, #c4efd9);
+  display: flex;
+  height: 24px;
+  width: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.link {
+  height: 40px;
+  font-size: 14px;
+  gap: 16px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.link:hover {
+  opacity: 1;
+}

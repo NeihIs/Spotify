@@ -1,0 +1,118 @@
+.header {
+  height: 320px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: 0 20px 20px 32px;
+  position: relative;
+  top: -64px;
+  overflow: hidden;
+  box-shadow: inset 0px -6px 1px -10px rgba(0, 0, 0, 0.1);
+}
+
+.header-image img {
+  width: 232px;
+  height: 232px;
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+}
+
+.header-image-artist img {
+  width: 232px;
+  height: 232px;
+  border-radius: 100%;
+}
+
+.header-info {
+  margin-left: 24px;
+  z-index: 1;
+}
+
+.header-info-type {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.header-info-name {
+  font-size: clamp(2.5rem, 3vw, 5rem);
+  line-height: 7.3rem;
+  font-weight: 800;
+  margin: 0 0 26px 0;
+  letter-spacing: -4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: calc(100vw - 555px);
+}
+
+.header-info-description {
+  color: hsla(0, 0%, 100%, 0.7);
+  font-size: 0.875rem;
+  font-weight: 400;
+  align-items: center;
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.header-info-bottom {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 8px 0 4px 0;
+  display: flex;
+  align-items: center;
+}
+
+.header-info-bottom img {
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.header-info-bottom > span {
+  padding: 0 4px 0 0;
+}
+
+.header-info-bottom > span:last-child {
+  color: hsla(0, 0%, 100%, 0.7);
+  font-weight: 300;
+}
+
+.noise {
+  background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%),
+    var(--background-noise);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+@media only screen and (max-width: 770px) {
+  .header-info-name {
+    letter-spacing: 0;
+  }
+}
+
+@media only screen and (min-width: 770px) and (max-width: 970px) {
+  .header-info-name {
+    letter-spacing: -1px;
+  }
+}
+
+@media only screen and (min-width: 970px) and (max-width: 1300px) {
+  .header-info-name {
+    letter-spacing: -1px;
+  }
+}
+
+@media only screen and (min-width: 1300px) and (max-width: 1500px) {
+  .header-info-name {
+    letter-spacing: -2px;
+  }
+}
+
+@media only screen and (min-width: 1500px) and (max-width: 1700px) {
+  .header-info-name {
+    letter-spacing: -3px;
+  }
+}

@@ -1,0 +1,181 @@
+.table-header {
+  font-size: 12px;
+  color: #b3b3b3;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 0 48px;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 64px;
+}
+
+.table-header > div,
+.item > div {
+  display: flex;
+  flex-basis: 32px;
+}
+
+.table-header > div:first-child,
+.item > div:first-child {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.table-header > div:nth-child(2),
+.item > div:nth-child(2) {
+  flex-grow: 9;
+}
+
+@media only screen and (min-width: 1440px) {
+  .table-header > div:nth-child(2),
+  .item > div:nth-child(2) {
+    flex-grow: 6;
+  }
+}
+
+@media only screen and (min-width: 1020px) and (max-width: 1200px) {
+  .table-header > div:nth-child(2),
+  .item > div:nth-child(2) {
+    flex-grow: 16;
+  }
+}
+
+.table-header > div:nth-child(3),
+.item > div:nth-child(3) {
+  flex-grow: 4;
+}
+
+.table-header > div:nth-child(4),
+.item > div:nth-child(4) {
+  flex-basis: 100px;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1020px) {
+  .table-header > div:nth-child(4),
+  .item > div:nth-child(4) {
+    display: none;
+  }
+}
+
+.table-header > div:last-child,
+.item > div:last-child {
+  flex-grow: 2;
+  justify-content: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  height: 56px;
+  font-size: 14px;
+  color: #b3b3b3;
+  font-weight: 400;
+  margin: 0 32px;
+  padding: 0 16px;
+  font-family: "Circular Std Book";
+  position: relative;
+}
+
+.item:hover {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  color: white;
+}
+
+.item:hover .song-link {
+  color: white;
+}
+
+.item:hover .index-number,
+.index-icon {
+  display: none;
+}
+
+.item:hover .index-icon,
+.index-number {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.index-number {
+  font-size: 16px;
+}
+
+.meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.meta img {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+
+.song-artist-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-name {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: white;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 32vw;
+}
+
+.artist-links {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 29vw;
+}
+
+.date,
+.duration {
+  color: #a7a7a7 !important;
+}
+
+.duration {
+  display: flex;
+  justify-content: center;
+}
+
+.song-link {
+  color: #a7a7a7;
+  text-decoration: none;
+}
+
+.song-link:hover {
+  text-decoration: underline;
+}
+
+.album {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 8vw;
+  overflow: hidden;
+}
+
+.album a {
+  color: #a7a7a7;
+  text-decoration: none;
+}
+
+.album a:hover {
+  text-decoration: underline;
+  color: white;
+}

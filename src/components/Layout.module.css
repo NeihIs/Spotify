@@ -1,0 +1,8 @@
+.container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas: "side-bar body";
+  grid-template-columns: 240px auto;
+  min-height: calc(100vh-90px);
+  max-height: calc(100vh-90px);
+}

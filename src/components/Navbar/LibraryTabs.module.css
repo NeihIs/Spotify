@@ -1,0 +1,17 @@
+.tabs {
+  padding-left: 24px;
+}
+
+.tabs > a {
+  text-decoration: none;
+  padding: 12px 16px;
+  margin-right: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.active {
+  background-color: #333;
+}
