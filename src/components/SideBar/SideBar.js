@@ -40,7 +40,6 @@ const Sidebar = () => {
         />
         <div style={{ height: 24 }}></div>
         <SideBarLink
-          className="not-allowed"
           to="#"
           name="Create Playlist"
           icon="create-playlist"

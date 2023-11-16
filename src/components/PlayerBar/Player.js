@@ -1,10 +1,8 @@
 import React, {
   useRef,
   useState,
-  // , useContext
 } from "react";
 import ReactAudioPlayer from "react-audio-player";
-// import AppContext from "../../store";
 import { convertFloatToTime } from "../../utils";
 import Icon from "../UI/Icon";
 import styles from "./Player.module.css";
@@ -21,7 +19,6 @@ const Player = () => {
   const playerIsPlaying = useSelector((state) => state.player.isPlaying);
   const dispatch = useDispatch();
 
-  // const appCtx = useContext(AppContext);
   const [currentTime, setCurrentTime] = useState(0);
   const [durationValue, setDurationValue] = useState(0);
 
