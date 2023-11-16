@@ -13,19 +13,6 @@ const PlayerBar = () => {
   const playerVolume = useSelector((state) => state.player.volume);
   const dispatch = useDispatch();
 
-  // const appCtx = useContext(AppContext);
-
-  // const [recentSong, setRecentSong] = useState();
-  // const getRecentPlayedTrack = async () => {
-  //   const listOfTracks = await Spotify.getCurrentUserRecentlyPlayedTracks();
-  //   setRecentSong(listOfTracks && listOfTracks.items[0]);
-  // };
-
-  // useEffect(() => {
-  //   window.addInputRangeStyle();
-  //   appCtx.isLoggedIn && getRecentPlayedTrack();
-  // },[appCtx.isLoggedIn, getRecentPlayedTrack]);
-
   return (
     <div className={styles.bar}>
       <div className={styles["now-playing"]}>
@@ -33,27 +20,13 @@ const PlayerBar = () => {
           loading="lazy"
           className={styles["now-playing-cover"]}
           alt=""
-          src={
-            /* recentSong ? recentSong.track.album.images[0].url :  */ "/blank.jpg"
-          }
+          src={"/blank.jpg"}
         />
         <div className={styles["now-playing-info"]}>
           <Link to="#" className={styles["now-playing-info-title"]}>
-            {/* recentSong ? recentSong.track.name : */ "..."}
+
           </Link>
           <div className={styles["now-playing-info-artist"]}>
-            {
-              /* recentSong
-              ? recentSong.track.artists.map((artist, i) => (
-                  <React.Fragment key={i}>
-                    <Link key={i} to={`/artist/${artist.id}`}>
-                      {artist.name}
-                    </Link>
-                    {recentSong.track.artists.length - 2 < i ? null : ", "}
-                  </React.Fragment>
-                ))
-              :  */ "..."
-            }
           </div>
         </div>
         <div className={styles["now-playing-action-button"]}>
