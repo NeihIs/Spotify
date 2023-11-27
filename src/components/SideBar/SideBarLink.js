@@ -1,6 +1,5 @@
-import React from "react"; // , { useContext }
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-// import AppContext from "../../store";
 import Icon from "../UI/Icon";
 import styles from "./SideBarLink.module.css";
 import { useSelector, useDispatch } from "react-redux";

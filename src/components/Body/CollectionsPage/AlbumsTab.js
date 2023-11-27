@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
 import Spotify from "../../../spotify/api";
-
 import PlayCard from "../../UI/PlayCard";
 
 const AlbumsTab = () => {

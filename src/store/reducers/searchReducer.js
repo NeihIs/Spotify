@@ -11,9 +11,7 @@ export const searchSlice = createSlice({
   initialState,
   reducers: {
     search: (state, action) => {
-      globalNavigate("/search/", action.payload.searchText.trim());
       return (state = {
-        isSearching: action.payload.searchText.trim() === "" ? false : true,
         searchText: action.payload.searchText,
       });
     },

@@ -1,6 +1,5 @@
 import React from "react"; // , { useContext }
 import { Link } from "react-router-dom";
-// import AppContext from "../../store/index.js";
 import Icon from "../UI/Icon";
 import styles from "./PlayerBar.module.css";
 import { useSelector, useDispatch } from "react-redux";

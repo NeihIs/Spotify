@@ -10,6 +10,7 @@ import PlaylistRoot from "./PlaylistPage/PlaylistRoot";
 import CollectionsPage from "./CollectionsPage/CollectionsPage";
 import CallbackPage from "../CallbackPage";
 import NotFoundPage from "../NotFoundPage";
+import CreatePlalist from "../SideBar/createPlaylist";
 
 const Body = () => {
   const handleScroll = (e) => {
@@ -26,6 +27,7 @@ const Body = () => {
           <Route path=":searchTerm/:searchType" element={<SearchPage />} />
         </Route>
         <Route path="/collection/tracks" element={<PlaylistRoot />} />
+        <Route path="/createPlaylist" element={<CreatePlalist />} />
         <Route
           path="/collection/playlists"
           element={<CollectionsPage tab="playlists" />}

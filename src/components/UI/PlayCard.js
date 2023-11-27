@@ -1,6 +1,5 @@
-import React from "react"; // , { useContext }
+import React from "react";
 import { Link } from "react-router-dom";
-// import AppContext from "../../store";
 import { changeTrack } from "../../store/reducers/playerReducer";
 import { useDispatch } from "react-redux";
 

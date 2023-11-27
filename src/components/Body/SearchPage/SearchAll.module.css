@@ -198,6 +198,10 @@
   margin: 32px 0;
   letter-spacing: -1px;
 }
+.find{
+  font-size: 20px;
+ right: 30px;
+}
 
 .tiles {
   --column-count: 7;

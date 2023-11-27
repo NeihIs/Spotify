@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-
 import PlaylistsTab from "./PlaylistsTab";
 import PodcastsTab from "./PodcastsTab";
 import ArtistsTab from "./ArtistsTab";

@@ -46,7 +46,7 @@ const generateEndPoint = (type, param) => {
     case "CURRENT_USER_TOP_ARTISTS":
       return `${API_ENDPOINT}/me/top/artists`;
     case "CURRENT_USER_TOP_TRACKS":
-      return `${API_ENDPOINT}/me/top/tracks`;
+      return `${API_ENDPOINT}/me/top/tracks?time_range=long_term&limit=30`;
     case "CURRENT_USER_FOLLOWED_ARTISTS":
       return `${API_ENDPOINT}/me/following?type=artist`;
     case "PLAYLIST_BY_ID":
@@ -63,12 +63,43 @@ const generateEndPoint = (type, param) => {
       return `${API_ENDPOINT}/browse/categories?country=TR&locale=tr_TR&limit=${param}`;
     case "FEATURED_PLAYLISTS":
       return `${API_ENDPOINT}/browse/featured-playlists?country=TR&locale=tr_TR&limit=${param}`;
+    case "CREATE_PLAYLIST":
+      return `${API_ENDPOINT}/users/${param}/playlists`;
+
     default:
       throw new Error(
         ">>> Endpoint_type for SpotifyAPI isn't matching. Pass an available endpoint_type. <<<"
       );
   }
 };
+
+//API call
+const callAPI = async (url, method, body) => {
+  let token = localStorage.getItem("accessToken");
+  let headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+  };
+
+  try {
+    let response = await fetch(url,
+      {
+        headers: headers,
+        method,
+        body: body ? JSON.stringify(body) : undefined,
+      }
+    );
+    if (response.status === 201 || response.status === 200) {
+      let jsonResponse = await response.json();
+      console.log("response result:", jsonResponse);
+      return jsonResponse;
+    } else {
+      throw new Error(`Error  call api`);
+    }
+  } catch (err) {
+    console.error({ err });
+  }
+}
 
 const Spotify = {
 
@@ -92,21 +123,10 @@ const Spotify = {
     }
   },
   async search(query, type, limit, offset) {
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(
-      `${API_ENDPOINT}/search?q=${query}&type=${type}&market=TR${limit ? "&limit=" + limit : ""
-      }${offset ? "&offset=" + offset : ""}`,
-      {
-        headers: headers,
-        method: "GET",
-      }
-    );
-    let jsonResponse = await response.json();
-    return jsonResponse;
+    const results = await callAPI(
+      `${API_ENDPOINT}/search?q=${query}&type=${type}&market=TR${limit ? "&limit=" + limit : ""}${offset ? "&offset=" + offset : ""}`,
+      "GET");
+    return results;
   },
   async getUserId(token) {
     let headers = {
@@ -136,6 +156,18 @@ const Spotify = {
     let jsonResponse = await response.json();
     return jsonResponse;
   },
+  async createPlaylist(name) {
+    const userId = "31wn3gfmnua3b4ubfse6jytjifvi";
+    const body = {
+      name
+    }
+    const result = await callAPI(
+      `${API_ENDPOINT}/users/${userId}/playlists`,
+      "POST",
+      body
+    )
+    return result;
+  }
 
 
 };

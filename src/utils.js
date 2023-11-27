@@ -30,23 +30,22 @@ const formatDate = (date) => {
   return month + " " + day + ", " + year;
 };
 
-// Converts 521354 to 8:41
-// Used at playlist pages to show track_duration
+
+
+// Được sử dụng tại các trang danh sách phát để hiển thị track_duration
 const millisToMinutesAndSeconds = (millis) => {
   var minutes = Math.floor(millis / 60000);
   var seconds = ((millis % 60000) / 1000).toFixed(0);
   return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 };
 
-// Converts 2105769 to 2,105,769
-// Used at /artist page header to show monthly listeners
+
+// Được sử dụng tại tiêu đề trang /artist để hiển thị người nghe hàng tháng
 const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-// 12345 to "about 0 min 12 sec"
-// 123456 to "about 2 min 3 sec"
-// 12345678 to "about 3 hr 25 min" to show playlist_duration
+
 const convertMsToTime = (ms) => {
   let seconds = Math.floor(ms / 1000);
   let minutes = Math.floor(seconds / 60);
@@ -57,8 +56,8 @@ const convertMsToTime = (ms) => {
     }`;
 };
 
-// Sums songs' duration_in_ms and pass this to convertMsToTime()
-const calculatePlaylistDuration = (items) => {
+// Tính tổng thời lượng_in_ms của bài hát và chuyển giá trị này tới ConvertMsToTime()
+const calculatePlaylistDuration = (items = []) => {
   let durations = items.map((item) => item.track.duration_ms);
   return convertMsToTime(durations.reduce((acc, val) => acc + val, 0));
 };

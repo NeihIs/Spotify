@@ -1,23 +1,18 @@
 import React, {
   useEffect,
   useState,
-  // useContext,
 } from "react";
 import { useLocation } from "react-router-dom";
 import Spotify from "../../../spotify/api";
-// import AppContext from "../../../store";
 import { calculatePlaylistDuration } from "../../../utils";
 import { useDispatch } from "react-redux";
 import { changeNavbarNowPlayingText } from "../../../store/reducers/appReducer";
-
 import PlaylistRootHeader from "./PlaylistRootHeader";
 import SongList from "./SongList";
-
 import Icon from "../../UI/Icon";
 import styles from "./PlaylistRoot.module.css";
 
 const PlaylistRoot = () => {
-  // const appCtx = useContext(AppContext);
 
   const dispatch = useDispatch();
 
@@ -28,11 +23,11 @@ const PlaylistRoot = () => {
   const isAlbumPage = pathname.startsWith("/album");
   const isLikedSongsPage = pathname === "/collection/tracks";
 
-  const [artist, setArtist] = useState(null);
-  const [playlist, setPlaylist] = useState(null);
-  const [likedSongs, setLikedSongs] = useState(null);
-  const [album, setAlbum] = useState(null);
-  const [artistTracks, setArtistTracks] = useState(null);
+  const [artist, setArtist] = useState([]);
+  const [playlist, setPlaylist] = useState([]);
+  const [likedSongs, setLikedSongs] = useState([]);
+  const [album, setAlbum] = useState([]);
+  const [artistTracks, setArtistTracks] = useState([]);
   const [currentUser, setCurrentUser] = useState();
 
   const generatePageName = () => {
@@ -44,14 +39,14 @@ const PlaylistRoot = () => {
 
   const generatePlaylistImage = () => {
     if (isLikedSongsPage) return "/playlist-cover-liked-songs.png";
-    if (isPlaylistPage)
+    if (isPlaylistPage && playlist.length)
       return playlist && playlist.images[0]
         ? playlist.images[0].url
           ? playlist.images[0].url
           : "/blank.jpg"
         : "/blank.jpg";
-    if (isAlbumPage) return album && album.images[0].url;
-    if (isArtistPage) return artist && artist.images[0] && artist.images[0].url;
+    if (isAlbumPage) return album && album.images && album.images[0].url;
+    if (isArtistPage) return artist && artist.images && artist.images[0] && artist.images[0].url;
     return "/blank.jpg";
   };
 
@@ -64,10 +59,10 @@ const PlaylistRoot = () => {
 
   const generatePlaylistOwner = () => {
     if (isLikedSongsPage) return currentUser && currentUser.display_name;
-    if (isPlaylistPage) return playlist && playlist.owner.display_name;
+    if (isPlaylistPage && playlist.length) return playlist && playlist.owner.display_name;
     if (isAlbumPage)
       return (
-        album && `${album.artists[0].name} • ${album.release_date.substr(0, 4)}`
+        album && `${album.artists?.[0].name} • ${album.release_date?.substr(0, 4)}`
       );
     return null;
   };
@@ -80,15 +75,15 @@ const PlaylistRoot = () => {
 
   const generatePlaylistCount = () => {
     if (isLikedSongsPage) return likedSongs && likedSongs.total;
-    if (isPlaylistPage) return playlist && playlist.tracks.total;
+    if (isPlaylistPage) return playlist && playlist.tracks?.total;
     if (isAlbumPage) return album && album.total_tracks;
     return null;
   };
 
   const generateSongList = () => {
     if (isLikedSongsPage) return likedSongs && likedSongs.items;
-    if (isPlaylistPage) return playlist && playlist.tracks.items;
-    if (isAlbumPage) return album && album.tracks.items;
+    if (isPlaylistPage) return playlist && playlist.tracks?.items;
+    if (isAlbumPage) return album && album.tracks?.items;
     if (isArtistPage) return artistTracks && artistTracks.tracks;
     return null;
   };
@@ -111,7 +106,6 @@ const PlaylistRoot = () => {
       dispatch(
         changeNavbarNowPlayingText({ text: playlist.name })
       );
-      // appCtx.handleChangeNavbarNowPlayingText(playlist.name);
     };
   } else if (isArtistPage) {
     getArtist = async () => {
@@ -124,7 +118,7 @@ const PlaylistRoot = () => {
       dispatch(
         changeNavbarNowPlayingText({ text: artist.name })
       );
-      // appCtx.handleChangeNavbarNowPlayingText(artist.name);
+
     };
     getArtistTracks = async () => {
       let arr = pathname.split("/");
@@ -147,7 +141,7 @@ const PlaylistRoot = () => {
       dispatch(
         changeNavbarNowPlayingText({ text: "Liked Songs" })
       );
-      // appCtx.handleChangeNavbarNowPlayingText("Liked songs");
+
     };
   } else if (isAlbumPage) {
     getAlbum = async () => {
@@ -160,7 +154,7 @@ const PlaylistRoot = () => {
       dispatch(
         changeNavbarNowPlayingText({ text: album.name })
       );
-      // appCtx.handleChangeNavbarNowPlayingText(album.name);
+
     };
   }
 
@@ -192,16 +186,16 @@ const PlaylistRoot = () => {
         description={isPlaylistPage ? playlist && playlist.description : null}
         owner={generatePlaylistOwner()}
         ownerPP={generatePlaylistOwnerPP()}
-        followers={isPlaylistPage ? playlist && playlist.followers.total : null}
+        followers={isPlaylistPage ? playlist && playlist?.followers?.total : null}
         count={generatePlaylistCount()}
         duration={
           isLikedSongsPage
-            ? likedSongs && calculatePlaylistDuration(likedSongs.items)
+            ? likedSongs && calculatePlaylistDuration(likedSongs?.items)
             : isPlaylistPage
-              ? playlist && calculatePlaylistDuration(playlist.tracks.items)
+              ? playlist && calculatePlaylistDuration(playlist.tracks?.items)
               : null
         }
-        listeners={artist && artist.followers.total}
+        listeners={artist && artist.followers?.total}
       />
       <div className={styles.wrapper}>
         <div className={styles.noise}></div>

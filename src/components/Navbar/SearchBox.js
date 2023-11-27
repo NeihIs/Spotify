@@ -29,14 +29,10 @@ const SearchBox = () => {
     dispatch(search({ searchText: val }));
   };
 
-  const func = debounce((string) => api(string), 1000);
+  const handleSearch = debounce((string) => api(string), 1000);
 
   const changeHandler = (e) => {
-    if (e.target.value.trim() === "") {
-      api(e.target.value);
-    } else {
-      func(e.target.value);
-    }
+    handleSearch(e.target.value);
   };
 
   const resetHandler = () => {
@@ -59,7 +55,7 @@ const SearchBox = () => {
         onChange={changeHandler}
       />
       <div onClick={resetHandler}>
-        {inputRef.current.value !== "" && (
+        {inputRef.current.valueOf !== "" && (
           <Icon
             name="navbar-search-clear"
             color="#000"

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Spotify from "../../../spotify/api";
-
 import PlayCard from "../../UI/PlayCard";
 import HeroCard from "../../UI/HeroCard";
 
@@ -29,26 +28,26 @@ const PlaylistsTab = () => {
         list={
           likedSongs
             ? likedSongs.items.map((song) => ({
-                name: song.track.name,
-                artist: song.track.artists[0].name,
-              }))
+              name: song.track.name,
+              artist: song.track.artists[0].name,
+            }))
             : null
         }
       />
       {playlists
         ? playlists.items.map((playlist) => (
-            <PlayCard
-              key={playlist.id}
-              href={`/playlist/${playlist.id}`}
-              cover={playlist.images[0] ? playlist.images[0].url : "/blank.jpg"}
-              title={playlist.name}
-              subtitle={
-                playlist.description
-                  ? playlist.description
-                  : `By ${playlist.owner.display_name}`
-              }
-            />
-          ))
+          <PlayCard
+            key={playlist.id}
+            href={`/playlist/${playlist.id}`}
+            cover={playlist.images[0] ? playlist.images[0].url : "/blank.jpg"}
+            title={playlist.name}
+            subtitle={
+              playlist.description
+                ? playlist.description
+                : `By ${playlist.owner.display_name}`
+            }
+          />
+        ))
         : null}
     </React.Fragment>
   );

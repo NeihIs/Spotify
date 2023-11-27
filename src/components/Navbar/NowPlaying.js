@@ -1,6 +1,5 @@
-import React from // , { useContext }
+import React from
   "react";
-// import AppContext from "../../store";
 import Icon from "../UI/Icon";
 import styles from "./NowPlaying.module.css";
 import { useSelector } from "react-redux";

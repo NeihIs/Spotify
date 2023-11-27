@@ -1,11 +1,10 @@
 import React, {
   useEffect,
   useState,
-  // , useContext
+  useCallback
 } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Spotify from "../../../spotify/api";
-// import AppContext from "../../../store";
 import { millisToMinutesAndSeconds } from "../../../utils";
 import PlayCard from "../../UI/PlayCard";
 import Icon from "../../UI/Icon";
@@ -15,29 +14,35 @@ import { useSelector } from "react-redux";
 
 const SearchAll = () => {
   const navigate = useNavigate();
-  // const appCtx = useContext(AppContext);
+
   const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
   const searchText = useSelector((state) => state.search.searchText);
 
-  const [albums, setAlbums] = useState(null);
-  const [topSong, setTopSong] = useState(null);
-  const [songs, setSongs] = useState(null);
+  const [albums, setAlbums] = useState([]);
+  const [topSong, setTopSong] = useState([]);
+  const [songs, setSongs] = useState([]);
 
-  const getAlbums = async () => {
+  const getAlbums = useCallback(async () => {
     const results = await Spotify.search(searchText, "album", 7);
     setAlbums(results.albums.items);
-  };
+  }, [searchText]);
 
-  const getSongs = async () => {
+  const getSongs = useCallback(async () => {
     const results = await Spotify.search(searchText, "track", 5);
     setTopSong(results.tracks.items.shift());
     setSongs(results.tracks.items);
-  };
+  }, [searchText]);
 
   useEffect(() => {
-    userLoggedIn && getAlbums();
-    userLoggedIn && getSongs();
-  }, [searchText]);
+    if (userLoggedIn) {
+      getAlbums();
+      getSongs();
+    }
+  }, [searchText, getAlbums, getSongs, userLoggedIn]);
+
+  if (topSong && topSong.length === 0) {
+    return <div className={styles.find}>Please enter the name of the song, album?</div>
+  }
 
   return (
     <React.Fragment>

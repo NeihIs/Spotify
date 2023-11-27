@@ -4,13 +4,11 @@ import React, {
   useState,
 } from "react";
 import { Link } from "react-router-dom";
-// import AppContext from "../../store";
 import Spotify from "../../spotify/api";
 import SideBarLink from "./SideBarLink";
 import Icon from "../UI/Icon";
 import styles from "./SideBar.module.css";
 import { useSelector } from "react-redux";
-
 const Sidebar = () => {
   const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
   const [playlists, setPlaylists] = useState();
@@ -40,12 +38,13 @@ const Sidebar = () => {
         />
         <div style={{ height: 24 }}></div>
         <SideBarLink
-          to="#"
+          to="/createPlaylist"
           name="Create Playlist"
           icon="create-playlist"
           popoverContentTitle="Create a playlist"
           popoverContentText="Log in to create and share playlists."
         />
+
         <SideBarLink
           to="/collection/tracks"
           name="Liked Songs"
