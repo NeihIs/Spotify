@@ -16,6 +16,7 @@
         "react-scripts": "^5.0.1",
         "react-spotify-player": "^1.0.4",
         "react-spotify-web-playback": "^0.14.1",
+        "spotify-web-api-js": "^1.5.2",
         "web-vitals": "^2.1.4"
     },
     "scripts": {

@@ -99,13 +99,6 @@ const HomePage = () => {
           <div className={styles["cards-container"]}>
             {topTracks
               ? topTracks.items.map((item, i) => (
-                // <PlayCard
-                //   key={i}
-                //   cover={item.album.images[0].url}
-                //   title={item.name}
-                //   subtitle={item.artists.map((artist) => artist.name + " ")}
-                //   trackUrl={item.preview_url}
-                // />
                 <SpotifyPlayer
                   uri={item.uri}
                   size={size}

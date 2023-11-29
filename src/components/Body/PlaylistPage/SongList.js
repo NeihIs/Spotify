@@ -1,11 +1,8 @@
 import React, {
   useRef,
-  // , useContext
 } from "react";
 import { Link } from "react-router-dom";
-// import AppContext from "../../../store";
 import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
-
 import { useDispatch, useSelector } from "react-redux";
 import { changeTrack } from "../../../store/reducers/playerReducer";
 
@@ -13,12 +10,11 @@ import Icon from "../../UI/Icon";
 import styles from "./SongList.module.css";
 
 const SongList = (props) => {
-  // const appCtx = useContext(AppContext);
   const trackSrc = useSelector((state) => state.player.trackSrc);
   const isPlaying = useSelector((state) => state.player.isPlaying);
   const dispatch = useDispatch();
   const tableHeaderElement = useRef(null);
-  // TODO: Too much conditional statements going on here, will be fixed.
+
   return (
     <div className={styles.table}>
       <div className={styles["table-header"]} ref={tableHeaderElement}>
@@ -39,100 +35,99 @@ const SongList = (props) => {
       <div className={styles.playlist}>
         {props.songs
           ? props.songs.map((song, index) => {
-              let track =
-                props.page === "artist" || props.page === "album"
-                  ? song
-                  : song.track;
-              return (
-                <div className={styles.item} key={index}>
-                  <div className={styles.index}>
-                    {track.preview_url ? (
-                      <React.Fragment>
-                        {track.preview_url === trackSrc ? (
-                          isPlaying ? (
-                            <img
-                              src="/playing.gif"
-                              width="15"
-                              height="15"
-                              alt="Track is playing"
-                              className={styles["index-number"]}
-                            />
-                          ) : (
-                            <Icon name="track-paused" width={16} height={16} />
-                          )
-                        ) : (
-                          <div className={styles["index-number"]}>
-                            {index + 1}
-                          </div>
-                        )}
-                        <div
-                          className={styles["index-icon"]}
-                          onClick={
-                            () =>
-                              dispatch(
-                                changeTrack({ track: track.preview_url })
-                              )
-                            // appCtx.handlePlayerChangeTrack(track.preview_url)
-                          }
-                        >
-                          <Icon
-                            name="player-play"
-                            width={12}
-                            height={12}
-                            color="#fff"
+            let track =
+              props.page === "artist" || props.page === "album"
+                ? song
+                : song.track;
+            return (
+              <div className={styles.item} key={index}>
+                <div className={styles.index}>
+                  {track.preview_url ? (
+                    <React.Fragment>
+                      {track.preview_url === trackSrc ? (
+                        isPlaying ? (
+                          <img
+                            src="/playing.gif"
+                            width="15"
+                            height="15"
+                            alt="Track is playing"
+                            className={styles["index-number"]}
                           />
+                        ) : (
+                          <Icon name="track-paused" width={16} height={16} />
+                        )
+                      ) : (
+                        <div className={styles["index-number"]}>
+                          {index + 1}
                         </div>
-                      </React.Fragment>
-                    ) : (
-                      // If track hasn't "preview_url" show unavailable symbol
-                      <div title="Preview track is unavailable">🚫</div>
-                    )}
-                  </div>
-                  <div className={styles.meta}>
-                    <img
-                      loading="lazy"
-                      src={
-                        track.album ? track.album.images[0].url : "/blank.jpg"
-                      }
-                      alt="Song"
-                    />
-                    <div className={styles["song-artist-column"]}>
-                      <div className={styles["song-name"]}>{track.name}</div>
-                      <div className={styles["artist-links"]}>
-                        {track.artists
-                          ? track.artists.map((artist, i) => (
-                              <React.Fragment key={i}>
-                                <Link
-                                  className={styles["song-link"]}
-                                  to={`/artist/${artist.id}`}
-                                >
-                                  {artist.name}
-                                </Link>
-                                {track.artists.length - 2 < i ? null : ", "}
-                              </React.Fragment>
-                            ))
-                          : null}
+                      )}
+                      <div
+                        className={styles["index-icon"]}
+                        onClick={
+                          () =>
+                            dispatch(
+                              changeTrack({ track: track.preview_url })
+                            )
+                        }
+                      >
+                        <Icon
+                          name="player-play"
+                          width={12}
+                          height={12}
+                          color="#fff"
+                        />
                       </div>
-                    </div>
-                  </div>
-                  {track.album ? (
-                    <div className={styles.album}>
-                      <Link to={`/album/${track.album.id}`}>
-                        {track.album.name}
-                      </Link>
-                    </div>
-                  ) : null}
-                  {props.page !== "album" && (
-                    <div className={styles.date}>
-                      {formatDate(track.album.release_date)}
-                    </div>
+                    </React.Fragment>
+                  ) : (
+                    // If track hasn't "preview_url" show unavailable symbol
+                    <div title="Preview track is unavailable">🚫</div>
                   )}
-                  <div className={styles.duration}>
-                    <span>{millisToMinutesAndSeconds(track.duration_ms)}</span>
+                </div>
+                <div className={styles.meta}>
+                  <img
+                    loading="lazy"
+                    src={
+                      track.album ? track.album.images[0].url : "/blank.jpg"
+                    }
+                    alt="Song"
+                  />
+                  <div className={styles["song-artist-column"]}>
+                    <div className={styles["song-name"]}>{track.name}</div>
+                    <div className={styles["artist-links"]}>
+                      {track.artists
+                        ? track.artists.map((artist, i) => (
+                          <React.Fragment key={i}>
+                            <Link
+                              className={styles["song-link"]}
+                              to={`/artist/${artist.id}`}
+                            >
+                              {artist.name}
+                            </Link>
+                            {track.artists.length - 2 < i ? null : ", "}
+                          </React.Fragment>
+                        ))
+                        : null}
+                    </div>
                   </div>
                 </div>
-              );
-            })
+                {track.album ? (
+                  <div className={styles.album}>
+                    <Link to={`/album/${track.album.id}`}>
+                      {track.album.name}
+                    </Link>
+                  </div>
+                ) : null}
+                {props.page !== "album" && (
+                  <div className={styles.date}>
+                    {formatDate(track.album.release_date)}
+                  </div>
+                )}
+                <div className={styles.duration}>
+                  <span>{millisToMinutesAndSeconds(track.duration_ms)}</span>
+                </div>
+              </div>
+            );
+          })
           : null}
       </div>
     </div>

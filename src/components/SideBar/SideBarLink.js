@@ -39,7 +39,7 @@ const SideBarLink = (props) => {
       );
     };
   } else {
-    // if location equals props.to, show -active icon styles
+    // nếu vị trí bằng props.to, hãy hiển thị kiểu biểu tượng home
     icon =
       location === props.to
         ? "sidebar-" + props.icon + "-active"
@@ -54,7 +54,7 @@ const SideBarLink = (props) => {
     document.getElementById("empty").focus();
   };
 
-  // auth-user clicks link go to link / non-auth-user clicks 'library or liked songs' change href to #
+  //liên kết nhấp chuột của người dùng xác thực đi tới liên kết / nhấp chuột vào 'thư viện hoặc bài hát đã thích' thay đổi href thành #
   const to =
     !userLoggedIn &&
       (props.name === "Your Library" || props.name === "Liked Songs")

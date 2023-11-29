@@ -9,12 +9,10 @@ import { millisToMinutesAndSeconds } from "../../../utils";
 import PlayCard from "../../UI/PlayCard";
 import Icon from "../../UI/Icon";
 import styles from "./SearchAll.module.css";
-
 import { useSelector } from "react-redux";
 
 const SearchAll = () => {
   const navigate = useNavigate();
-
   const userLoggedIn = useSelector((state) => state.auth.isUserLoggedIn);
   const searchText = useSelector((state) => state.search.searchText);
 
@@ -95,7 +93,9 @@ const SearchAll = () => {
                       width={16}
                       height={16}
                     />
+
                   </div>
+
                   <img
                     loading="lazy"
                     src={

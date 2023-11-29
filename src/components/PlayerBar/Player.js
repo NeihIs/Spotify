@@ -30,6 +30,7 @@ const Player = () => {
     setCurrentTime(currentTime);
   };
 
+
   return (
     <div className={styles["player-wrapper"]}>
       <ReactAudioPlayer
@@ -39,7 +40,7 @@ const Player = () => {
         height={0}
         width={0}
         ref={audioPlayer}
-        src={playerTrackSrc}
+        src={playerTrackSrc} // <-- Pass string URL
         playing={playerIsPlaying}
         loop={playerLooped}
         muted={playerMuted}

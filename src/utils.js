@@ -21,7 +21,7 @@ const months = [
   "Nov",
   "Dec",
 ];
-
+//trích xuất và định dạng thông tin ngày tháng một cách hiệu quả từ một chuỗi ngày tháng
 const formatDate = (date) => {
   let d = new Date(date),
     month = "" + months[d.getMonth()],
@@ -45,7 +45,7 @@ const numberWithCommas = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-
+// chuyển đổi một giá trị mili giây thành một định dạng thời gian có thể đọc được của con người
 const convertMsToTime = (ms) => {
   let seconds = Math.floor(ms / 1000);
   let minutes = Math.floor(seconds / 60);
@@ -68,7 +68,7 @@ const welcomingMessage = () => {
   if (date.getHours() < 17) return "Good afternoon";
   if (date.getHours() < 25) return "Good evening";
 };
-
+// thay đổi giao diện người dùng dựa trên vị trí cuộn hiện tại ( top) và tên đường dẫn trang ( path)
 const triggerBreakpoints = (top) => {
   const path = document.location.pathname;
   const body = document.body;

@@ -32,18 +32,7 @@ const Body = () => {
           path="/collection/playlists"
           element={<CollectionsPage tab="playlists" />}
         />
-        <Route
-          path="/collection/podcasts"
-          element={<CollectionsPage tab="podcasts" />}
-        />
-        <Route
-          path="/collection/artists"
-          element={<CollectionsPage tab="artists" />}
-        />
-        <Route
-          path="/collection/albums"
-          element={<CollectionsPage tab="albums" />}
-        />
+
         <Route path="/playlist/:playlistId" element={<PlaylistRoot />} />
         <Route path="/artist/:artistId" element={<PlaylistRoot />} />
         <Route path="/album/:albumId" element={<PlaylistRoot />} />

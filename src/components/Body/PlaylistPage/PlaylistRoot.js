@@ -5,8 +5,6 @@ import React, {
 import { useLocation } from "react-router-dom";
 import Spotify from "../../../spotify/api";
 import { calculatePlaylistDuration } from "../../../utils";
-import { useDispatch } from "react-redux";
-import { changeNavbarNowPlayingText } from "../../../store/reducers/appReducer";
 import PlaylistRootHeader from "./PlaylistRootHeader";
 import SongList from "./SongList";
 import Icon from "../../UI/Icon";
@@ -14,10 +12,11 @@ import styles from "./PlaylistRoot.module.css";
 
 const PlaylistRoot = () => {
 
-  const dispatch = useDispatch();
 
+  //cung cấp quyền truy cập vào đối tượng vị trí hiện tại, chứa thông tin về URL hiện tại, bao gồm tên đường dẫn, tìm kiếm và tham số
   const { pathname } = useLocation();
   const location = useLocation();
+  // kiểm tra xem một chuỗi có bắt đầu bằng một chuỗi con được chỉ định hay không
   const isArtistPage = pathname.startsWith("/artist");
   const isPlaylistPage = pathname.startsWith("/playlist");
   const isAlbumPage = pathname.startsWith("/album");
@@ -56,8 +55,10 @@ const PlaylistRoot = () => {
     if (isAlbumPage) return album && album.name;
     return artist && artist.name;
   };
-
+  //xác định chủ sở hữu hoặc người tạo danh sách phát hoặc album hiện tại đang được xem
   const generatePlaylistOwner = () => {
+    // kiểm tra xem trang hiện tại có phải là trang 'Bài hát đã thích' hay không
+    //Nếu đúng, nó sẽ trả về tên hiển thị của người dùng hiện tại, giả sử người dùng đã đăng nhập và đối currentUsertượng có sẵn
     if (isLikedSongsPage) return currentUser && currentUser.display_name;
     if (isPlaylistPage && playlist.length) return playlist && playlist.owner.display_name;
     if (isAlbumPage)
@@ -66,20 +67,22 @@ const PlaylistRoot = () => {
       );
     return null;
   };
-
+  //xác định URL ảnh hồ sơ của chủ sở hữu danh sách phát hoặc album hiện tại đang được xem
   const generatePlaylistOwnerPP = () => {
     if (isLikedSongsPage && currentUser !== null)
       return currentUser?.images[0].url;
     return "/blank.jpg";
   };
-
+  //xác định tổng số bản nhạc hoặc bài hát cho danh sách phát hoặc album hiện tại đang được xem. 
+  // trả về số lượng bản nhạc thích hợp dựa trên loại trang hiện tại.
   const generatePlaylistCount = () => {
     if (isLikedSongsPage) return likedSongs && likedSongs.total;
     if (isPlaylistPage) return playlist && playlist.tracks?.total;
     if (isAlbumPage) return album && album.total_tracks;
     return null;
   };
-
+  //truy xuất danh sách các bài hát hoặc bản nhạc dựa trên loại trang hiện tại. 
+  //trả về một mảng các đối tượng bài hát hoặc bản nhạc nếu có hoặc nullnếu không có dữ liệu.
   const generateSongList = () => {
     if (isLikedSongsPage) return likedSongs && likedSongs.items;
     if (isPlaylistPage) return playlist && playlist.tracks?.items;
@@ -103,9 +106,7 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setPlaylist(playlist);
-      dispatch(
-        changeNavbarNowPlayingText({ text: playlist.name })
-      );
+
     };
   } else if (isArtistPage) {
     getArtist = async () => {
@@ -115,9 +116,7 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setArtist(artist);
-      dispatch(
-        changeNavbarNowPlayingText({ text: artist.name })
-      );
+
 
     };
     getArtistTracks = async () => {
@@ -138,9 +137,6 @@ const PlaylistRoot = () => {
         "CURRENT_USER_SAVED_TRACKS"
       );
       setLikedSongs(likedSongs);
-      dispatch(
-        changeNavbarNowPlayingText({ text: "Liked Songs" })
-      );
 
     };
   } else if (isAlbumPage) {
@@ -151,9 +147,6 @@ const PlaylistRoot = () => {
         arr[arr.length - 1]
       );
       setAlbum(album);
-      dispatch(
-        changeNavbarNowPlayingText({ text: album.name })
-      );
 
     };
   }
@@ -183,10 +176,8 @@ const PlaylistRoot = () => {
         page={generatePageName()}
         image={generatePlaylistImage()}
         name={generatePlaylistName()}
-        description={isPlaylistPage ? playlist && playlist.description : null}
         owner={generatePlaylistOwner()}
         ownerPP={generatePlaylistOwnerPP()}
-        followers={isPlaylistPage ? playlist && playlist?.followers?.total : null}
         count={generatePlaylistCount()}
         duration={
           isLikedSongsPage
@@ -195,7 +186,7 @@ const PlaylistRoot = () => {
               ? playlist && calculatePlaylistDuration(playlist.tracks?.items)
               : null
         }
-        listeners={artist && artist.followers?.total}
+      // listeners={artist && artist.followers?.total}
       />
       <div className={styles.wrapper}>
         <div className={styles.noise}></div>

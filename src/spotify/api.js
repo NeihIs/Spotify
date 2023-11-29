@@ -108,13 +108,20 @@ const Spotify = {
     return now.getTime();
   },
   getAccessToken() {
+    //trích xuất giá trị của tham số access_token từ hash URL bằng cách sử dụng biểu thức chính quy và gán nó cho accessToken.
     let accessToken = window.location.hash.match(/access_token=([^&]*)/);
+    //trích xuất giá trị của expires_in từ hash URL và gán nó cho expiresIn.
     let expiresIn = window.location.hash.match(/expires_in=([^&]*)/);
     if (accessToken && expiresIn) {
+      // trích xuất giá trị mã thông báo truy cập thực tế từ mảng accessToken và gán nó cho spotifyAccessToken
       spotifyAccessToken = accessToken[1];
+      // lưu trữ spotifyAccessToken trong bộ nhớ cục bộ của trình duyệt bằng localStorage.setItem()
       localStorage.setItem("accessToken", spotifyAccessToken);
+      //chuyển đổi giá trị expiresIn, là một chuỗi, thành một số và nhân nó với 1000 để chuyển đổi từ giây sang mili giây
       let expiryTime = Number(expiresIn[1]) * 1000;
+      // lưu trữ thời gian hết hạn được tính bằng mili giây trong bộ nhớ cục bộ bằng localStorage.setItem()
       localStorage.setItem("accessTokenExpiry", this.getNow() + expiryTime);
+      // cập nhật hash URL để loại bỏ các tham số mã thông báo truy cập và thời gian hết hạn
       window.history.pushState("Access Token", " ", "/");
       return spotifyAccessToken;
     } else {
@@ -128,33 +135,20 @@ const Spotify = {
       "GET");
     return results;
   },
-  async getUserId(token) {
-    let headers = {
-      Authorization: `Bearer ${token}`,
-    };
-    let userId;
-    let response = await fetch(`${API_ENDPOINT}/me`, {
-      headers: headers,
-    });
-    let jsonResponse = await response.json();
-    if (jsonResponse) userId = jsonResponse.id;
-    return userId;
-  },
+
   async getFromSpotify(type, param) {
     if (!localStorage.getItem("accessToken")) {
       return null;
     }
-    let token = localStorage.getItem("accessToken");
-    let headers = {
-      Authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    };
-    let response = await fetch(generateEndPoint(type, param), {
-      headers: headers,
-      method: "GET",
-    });
-    let jsonResponse = await response.json();
-    return jsonResponse;
+    const url = generateEndPoint(type, param);
+    const method = "GET";
+    try {
+      const response = await callAPI(url, method);
+      return response;
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
   },
   async createPlaylist(name) {
     const userId = "31wn3gfmnua3b4ubfse6jytjifvi";

@@ -10,17 +10,18 @@ const Navbar = () => {
 
   const location = useLocation().pathname;
   const isLikedSongsPage = location === "/collection/tracks";
+  //startsWith() để kiểm tra xem pathname của location có bắt đầu bằng một chuỗi nhất định hay không
   const isPlaylistPage = location.startsWith("/playlist");
   const isAlbumPage = location.startsWith("/album");
 
   let navbarBackgroundColor = isLikedSongsPage
-    ? "80, 56, 160" // purple for liked songs page
+    ? "80, 56, 160" // màu tím cho trang bài hát thích
     : isPlaylistPage || isAlbumPage
       ? ` ${Math.floor(Math.random() * 255)},
         ${Math.floor(Math.random() * 255)},
         ${Math.floor(Math.random() * 255)}
-      ` // any other playlist page's navbar background color
-      : "7, 7, 7"; // other pages' navbarBackgroundColor is blackish
+      ` // màu nền thanh điều hướng của bất kỳ trang danh sách phát nào khác
+      : "7, 7, 7"; // thanh điều hướng của các trang khác BackgroundColor có màu hơi đen
 
   useEffect(() => {
     document.body.style.setProperty(

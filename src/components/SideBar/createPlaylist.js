@@ -11,12 +11,13 @@ const CreatePlaylist = () => {
         const playlistName = document.getElementById('playlistName').value;
         let result = await Spotify.createPlaylist(playlistName);
         console.log({ result });
-
     };
+
     console.log(handleCreatePlaylist);
     return (
         <form onSubmit={handleCreatePlaylist}>
             <label htmlFor="name">Playlist name: </label>
+            <br></br>
             <br />
             <input
                 placeholder="Enter Playlist Name"
@@ -25,7 +26,7 @@ const CreatePlaylist = () => {
             />
             <br />
             <br />
-            <button type="submit">Create Playlist</button>
+            <button type="submit">Create</button>
 
         </form>
     );
