@@ -40,7 +40,7 @@ const Player = () => {
         height={0}
         width={0}
         ref={audioPlayer}
-        src={playerTrackSrc} // <-- Pass string URL
+        src={playerTrackSrc}
         playing={playerIsPlaying}
         loop={playerLooped}
         muted={playerMuted}

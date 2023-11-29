@@ -53,7 +53,7 @@ const HomePage = () => {
     getCurrentUsersPlaylists,
     getCurrentUserSavedAlbums,
   ]);
-  console.log({ topTracks });
+  // console.log({ topTracks });
   return (
     <div className={styles.wrapper}>
       {userLoggedIn && (

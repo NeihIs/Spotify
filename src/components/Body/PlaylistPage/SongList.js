@@ -1,5 +1,4 @@
 import React, {
-  useRef,
 } from "react";
 import { Link } from "react-router-dom";
 import { formatDate, millisToMinutesAndSeconds } from "../../../utils";
@@ -13,11 +12,10 @@ const SongList = (props) => {
   const trackSrc = useSelector((state) => state.player.trackSrc);
   const isPlaying = useSelector((state) => state.player.isPlaying);
   const dispatch = useDispatch();
-  const tableHeaderElement = useRef(null);
 
   return (
     <div className={styles.table}>
-      <div className={styles["table-header"]} ref={tableHeaderElement}>
+      <div className={styles["table-header"]} >
         <div>#</div>
         <div>Title</div>
         {props.page !== "album" ? <div>Album</div> : null}
@@ -79,7 +77,7 @@ const SongList = (props) => {
                       </div>
                     </React.Fragment>
                   ) : (
-                    // If track hasn't "preview_url" show unavailable symbol
+                    // Nếu bản nhạc không có "preview_url" thì hiển thị biểu tượng không có sẵn
                     <div title="Preview track is unavailable">🚫</div>
                   )}
                 </div>

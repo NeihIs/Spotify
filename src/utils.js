@@ -21,7 +21,7 @@ const months = [
   "Nov",
   "Dec",
 ];
-//trích xuất và định dạng thông tin ngày tháng một cách hiệu quả từ một chuỗi ngày tháng
+//trích xuất và định dạng thông tin ngày tháng từ một chuỗi ngày tháng
 const formatDate = (date) => {
   let d = new Date(date),
     month = "" + months[d.getMonth()],
@@ -105,7 +105,9 @@ const getRandomRGB = (max) => {
   ${Math.floor(Math.random() * max)},
   ${Math.floor(Math.random() * max)})`;
 };
-
+//chuyển đổi số dấu phẩy động biểu thị thời gian tính bằng phút thành chuỗi thời gian được định dạng bằng phút và giây
+//const convertedTime = convertFloatToTime(2.5);
+//console.log(convertedTime); // Output: 02:30
 const convertFloatToTime = (time) => {
   let minutes = Math.floor(Math.trunc(time) / 60);
   let seconds = Math.trunc(time) % 60;

@@ -100,9 +100,12 @@ const PlaylistRoot = () => {
 
   if (isPlaylistPage) {
     getPlaylist = async () => {
+      //chia chuỗi pathname thành một mảng gồm các thành phần của nó bằng cách sử dụng ký tự '/' làm dấu phân cách
+      // phần tử cuối của mảng đại diện cho ID playlist
       let arr = pathname.split("/");
       const playlist = await Spotify.getFromSpotify(
         "PLAYLIST_BY_ID",
+        // truy cập phần tử cuối của mảng
         arr[arr.length - 1]
       );
       setPlaylist(playlist);

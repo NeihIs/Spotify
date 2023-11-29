@@ -57,7 +57,7 @@ const SideBarLink = (props) => {
   //liên kết nhấp chuột của người dùng xác thực đi tới liên kết / nhấp chuột vào 'thư viện hoặc bài hát đã thích' thay đổi href thành #
   const to =
     !userLoggedIn &&
-      (props.name === "Your Library" || props.name === "Liked Songs")
+      (props.name === "Your Library" || props.name === "Liked Songs" || props.name === "Create Playlist")
       ? "#"
       : props.to;
 
